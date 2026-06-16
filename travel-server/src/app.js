@@ -5,6 +5,7 @@ import { notFound, errorHandler } from './middleware/errorHandler.js';
 import authRouter from './routes/auth.js';
 import travelRouter from './routes/travel.js';
 import travelLogRouter from './routes/travelLog.js';
+import tripPlanRouter from './routes/tripPlan.js';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authRouter);
 app.use('/api/travel', travelRouter);
 app.use('/api/travel-logs', travelLogRouter);
+app.use('/api/trip-plans', tripPlanRouter);
 
 // Backward compat
 app.use('/travel', travelRouter);
