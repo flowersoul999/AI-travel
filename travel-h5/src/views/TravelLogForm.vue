@@ -39,6 +39,12 @@ const form = ref({
 })
 
 onMounted(async () => {
+const query = route.query
+if (query.destination) {
+  form.value.destination = query.destination
+  form.value.days = query.days || ''
+  form.value.totalSpent = query.totalSpent || ''
+}
   if (isEdit.value) {
     try {
       const res = await get(`/travel-logs/${route.params.id}`)

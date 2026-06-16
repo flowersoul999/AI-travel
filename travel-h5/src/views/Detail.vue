@@ -72,9 +72,12 @@
        </template>
 
     </div>
-    <div class="detail-footer" v-if="tripData && tripData.success !== false">
+      <div class="detail-footer" v-if="tripData && tripData.success !== false">
       <van-button type="primary" size="large" round @click="goTOChat" class="primary-button">
         咨询AI助手
+      </van-button>
+      <van-button type="success" size="large" round @click="markAsTaken" style="margin-top:8px;">
+        Mark as Taken
       </van-button>
     </div>
   </div>
@@ -95,6 +98,17 @@ const loading = ref(true)
 
 
 // 咨询AI助手
+const markAsTaken = () => {
+  router.push({
+    path: '/travel-log/new',
+    query: {
+      destination: tripData.value?.city || formData.city,
+      days: tripData.value?.days || formData.days,
+      totalSpent: tripData.value?.totalBudget || formData.budget,
+    }
+  })
+}
+
 const goTOChat = () => {
   router.push({ 
     path: '/chat',
