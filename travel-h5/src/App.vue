@@ -7,7 +7,7 @@ const route = useRoute()
 const auth = useAuth()
 const active = ref(0)
 
-const showTabbar = () => ['/', '/chat', '/profile', '/travel-logs'].includes(route.path)
+const showTabbar = () => ['/', '/chat', '/profile', '/travel-logs', '/my-plans'].includes(route.path)
 </script>
 
 <template>

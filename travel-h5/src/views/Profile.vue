@@ -33,6 +33,7 @@
       <div class="menu-section">
         <van-cell-group inset>
           <van-cell title="My Travels" icon="notes-o" is-link to="/travel-logs" />
+          <van-cell title="My Plans" icon="map-o" is-link to="/my-plans" />
           <van-cell title="Points Mall" icon="gift-o" is-link @click="showToast('Coming soon')" />
           <van-cell title="Settings" icon="setting-o" is-link @click="showToast('Coming soon')" />
         </van-cell-group>

@@ -45,6 +45,11 @@ const routes = [
     name :'TravelLogEdit',
     component: () =>import('../views/TravelLogForm.vue')
     },
+    {
+    path :'/my-plans',
+    name :'MyPlans',
+    component: () =>import('../views/MyPlans.vue')
+    },
 ]
 
 const router = createRouter({

@@ -98,6 +98,13 @@ const loading = ref(true)
 
 
 // 咨询AI助手
+const savePlan = async () => {
+  try {
+    await post('/trip-plans', tripData.value)
+    showToast('Plan saved')
+  } catch { showToast('Save failed') }
+}
+
 const markAsTaken = () => {
   router.push({
     path: '/travel-log/new',
@@ -138,7 +145,7 @@ const onback=()=>{
 
 //行程规划数据
 const fetchTripData = async () => {
-   const res = await post('recommend', {
+   const res = await post('/travel/recommend', {
       city: formData.city,
       budget: formData.budget,
       days: formData.days
