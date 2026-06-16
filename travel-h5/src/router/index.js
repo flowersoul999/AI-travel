@@ -20,6 +20,31 @@ const routes = [
     name :'Detail',
     component: () =>import('../views/Detail.vue')
     },
+    {
+    path :'/login',
+    name :'Login',
+    component: () =>import('../views/Login.vue')
+    },
+    {
+    path :'/register',
+    name :'Register',
+    component: () =>import('../views/Register.vue')
+    },
+    {
+    path :'/travel-logs',
+    name :'TravelLogs',
+    component: () =>import('../views/TravelLogList.vue')
+    },
+    {
+    path :'/travel-log/new',
+    name :'TravelLogNew',
+    component: () =>import('../views/TravelLogForm.vue')
+    },
+    {
+    path :'/travel-log/:id/edit',
+    name :'TravelLogEdit',
+    component: () =>import('../views/TravelLogForm.vue')
+    },
 ]
 
 const router = createRouter({
