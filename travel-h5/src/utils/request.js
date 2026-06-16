@@ -2,7 +2,7 @@ import axios from 'axios'
 
 //创建axios实例
 const request = axios.create({
-    baseURL: '/travel',
+    baseURL: '/api',
     timeout: 60000,
     headers: {
         'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ export function get(url, params) {
 export async function fetchStream(url, data, onChunk, onError, onComplete) {
     const controller = new AbortController()
     try {
-        const response = await fetch(`/travel/${url}`, {
+        const response = await fetch(`/api/travel/${url}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

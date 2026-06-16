@@ -1,38 +1,21 @@
-import 'dotenv/config';
-import express, { application } from 'express';
-import travelRouter from './routes/travel.js';
-import cors from 'cors';
+import app from './app.js';
+import config from './config/index.js';
+import { connectDB, disconnectDB } from './config/database.js';
 
-const app = express()
-const port = process.env.PORT
+const start = async () => {
+  await connectDB();
 
-app.use(cors())
+  app.listen(config.port, () => {
+    console.log(`\n  Server: http://localhost:${config.port}`);
+    console.log(`  Health: http://localhost:${config.port}/health`);
+    console.log(`  API:    http://localhost:${config.port}/api\n`);
+  });
+};
 
-app.use(express.json())
+process.on('SIGINT', async () => { await disconnectDB(); process.exit(0); });
+process.on('SIGTERM', async () => { await disconnectDB(); process.exit(0); });
 
-app.get('/', (req, res) => {
-    res.json({
-        message: '旅行推荐服务已启动',
-        endpoints: {
-            heartbeat: 'POST /heartbeat',
-            recommend: 'POST /travel/recommend',
-            chat: 'POST /travel/chat'
-        }
-    });
+start().catch((err) => {
+  console.error('Failed to start:', err.message);
+  process.exit(1);
 });
-
-app.post('/heartbeat',(req,res)=>{
-    console.log(req.query)
-    console.log(req.body)
-
-    res.json({
-        message:'服务正常运行',
-        timestamp:new Date().toISOString()
-    })
-})
-
-app.use('/travel',travelRouter)
-
-app.listen(port,()=>{
-    console.log(`服务地址 http://localhost:${port}`)
-})
